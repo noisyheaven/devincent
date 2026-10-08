@@ -1,5 +1,5 @@
 :root{--wine:#800020;--wine-d:#55001a;--ink:#3a2a2e;--tint:#f7eef0}
-*{box-sizing:border-box;margin:0}
+*{box-sizing:border-box;margin:1px}
 html{scroll-behavior:auto}
 body{font:300 16px/1.7 Poppins,system-ui,sans-serif;color:var(--ink);background:#fff;overflow-x:hidden}
 body.locked{overflow:hidden;height:100vh}
