@@ -1,0 +1,28 @@
+/* PHOTO PLACEMENT  (loaded after style.css, so it overrides it)
+   background-position: "X% Y%"  ->  X: 0% left ... 100% right,  Y: 0% top ... 100% bottom
+   Change the numbers if a head or body is cut off. */
+
+/* COVER: the title sits on a burgundy band at the top and the photo starts below it,
+   so the text never covers faces.
+   --shift = height of the band (how far the photo is pushed down).
+   Bigger number = faces lower; 0px = photo from the very top (old look). */
+#cover{--shift:120px;background:linear-gradient(180deg,#3b0012,var(--wine) 60%)}
+#cover .bg{top:var(--shift);background-position:50% 0%;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 70px);mask-image:linear-gradient(180deg,transparent 0,#000 70px)}
+#cover::after{background:linear-gradient(180deg,transparent 0,transparent 45%,var(--wine) 100%)}
+
+/* The top section is full width and starts at the very top (no side/top gaps) */
+.hero{padding:0;max-width:none}
+
+/* Top photo under the cover: shown in full. Its height follows the photo's real shape (see js/photos.js) */
+.hero-img{height:auto;min-height:0;aspect-ratio:2/3;background-position:50% 20%}
+
+/* Bride & groom: tall capsules, zig-zag left / right */
+.arch{width:min(190px,52vw);aspect-ratio:2/3;border-radius:999px;border:3px solid var(--wine);box-shadow:none;
+      margin:0 0 18px;background-position:50% 20%}
+.tint>.person:first-child .arch{margin-left:6%;margin-right:auto}
+.tint>.person:last-child .arch{margin-left:auto;margin-right:6%}
+.tint .amp{margin:6px 0 22px}
+
+/* Gallery: portrait tiles so people are not cut off */
+.gal .bg{aspect-ratio:3/4;background-position:50% 25%}
