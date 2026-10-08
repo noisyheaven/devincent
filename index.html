@@ -1,75 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Vincensius & Devi — Wedding Invitation</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pernikahan Vincensius &amp; Devi</title>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-
 </head>
-<body>
+<body class="locked">
 
-<section id="hero" aria-label="Wedding invitation">
-  <div class="stick">
-    <div>
-      <p class="sub" style="margin:0 0 20px">We are getting married</p>
-      <div class="names">
-        <h1 id="n1">Vincensius</h1>
-        <span class="amp" id="amp">&amp;</span>
-        <h1 id="n2">Devi</h1>
-      </div>
-      <p class="date" id="hd">Saturday, 26 December 2026</p>
+<!-- COVER -->
+<div id="cover">
+  <div class="bg" data-photo="cover"></div>
+  <div class="cover-in">
+    <svg viewBox="0 0 300 70" class="arc" aria-hidden="true"><path id="arc" d="M40,62 Q150,-6 260,62" fill="none"/><text><textPath href="#arc" startOffset="50%" text-anchor="middle">PERNIKAHAN KAMI</textPath></text></svg>
+    <h1>Vincensius &amp; Devi</h1>
+    <div class="to">
+      <p>Kepada Yth:</p>
+      <h2 id="guest">Tamu Undangan</h2>
+      <p class="small"><em>*) Mohon maaf apabila ada kesalahan dalam penulisan nama/gelar</em></p>
+      <button id="open" class="pill">Buka Undangan</button>
     </div>
-    <div class="hint" id="hint">Scroll</div>
   </div>
-</section>
+</div>
 
-<section>
-  <p class="quote rv">Therefore what God has joined together, let no one separate.<small>Mark 10:9</small></p>
-</section>
+<main id="home">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-top"><div class="hero-img bg" data-photo="cover"></div>
+    <svg class="wave" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C80,0 140,60 220,30 C290,5 340,40 400,20 L400,61 L0,61Z"/></svg></div>
+    <div class="hero-txt">
+      <p class="eyebrow zi">Pernikahan Kami</p>
+      <h2 class="names rv">Vincensius &amp; Devi</h2>
+      <p class="date rv" id="dateText">Sabtu,26 Desember 2026</p>
+      <a id="cal" class="pill dark rv" target="_blank" rel="noopener">Simpan di Kalender</a>
+      <div class="cd rv" id="cd"></div>
+    </div>
+  </section>
 
-<section>
-  <h2 class="rv">The couple</h2>
-  <p class="sub rv">Two families, one new beginning.</p>
-  <div class="couple">
-    <div class="rv"><div class="ph" data-photo="groom"><span>Groom photo</span></div>
-      <h3>Vincensius Tandiyatmo K</h3><p>Anak Laki-laki dari Bapak (alm) Tan Khe Khiang &amp; Ibu Sumarlina Ana</p></div>
-    <div class="rv"><div class="ph" data-photo="bride"><span>Bride photo</span></div>
-      <h3>Devi Christin</h3><p>Anak Perempuan dari Bapak Felix Herman &amp; Ibu Sofiana</p></div>
-  </div>
-</section>
+  <!-- VERSE -->
+  <section class="center">
+    <div class="mono zi">V<span>&amp;</span>D</div>
+    <blockquote class="rv">“Apa yang telah dipersatukan Allah, janganlah diceraikan manusia.”<cite>Markus 10:9</cite></blockquote>
+    <p class="rv"><br>Dengan penuh syukur kepada Tuhan Yesus Kristus, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada pernikahan kami.</p>
+  </section>
 
-<section>
-  <h2 class="rv">Our story</h2>
-  <p class="sub rv">A few moments that led us here.</p>
-  <div class="tl">
-    <article class="rv"><b>2025</b><h3>We met</h3><p>Write a short line about how you first met.</p></article>
-    <article class="rv"><b>2026</b><h3>We grew together</h3><p>A memory from your time together.</p></article>
-    <article class="rv"><b>2026</b><h3>He asked, she said yes</h3><p>Tell the story of the proposal.</p></article>
-  </div>
-</section>
+  <!-- COUPLE -->
+  <section class="center tint">
+    <div class="person rv"><div class="arch bg" data-photo="bride"></div>
+      <h3>Devi Christin</h3><p>Putri dari Bapak Felix Herman &amp; Ibu Sofiana</p></div>
+    <div class="amp zi">&amp;</div>
+    <div class="person rv"><div class="arch bg" data-photo="groom"></div>
+      <h3>Vincensius Tandiyatmo K</h3><p>Putra dari Bapak (alm) Tan Khe Khiang &amp; Ibu Sumarlina Ana</p></div>
+  </section>
 
-<section>
-  <h2 class="rv">Join us</h2>
-  <p class="sub rv">We would be honoured by your presence and prayers.</p>
-  <div class="events">
-    <div class="ev rv"><h3>Holy Matrimony</h3><p>Saturday, 26 December 2026<br>11:00 – 12:00</p><p style="margin-top:12px">Gereja Katolik Santo Hieronimus<br>Tanjung Hulu, Pontianak</p>
-      <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Gereja+Katolik+Santo+Hironimus+Paroki+Pontianak">View map</a></div>
-    <div class="ev rv"><h3>Reception</h3><p>Saturday, 26 December 2026<br>18:00 – 21:00</p><p style="margin-top:12px">G-HOTEL<br>Jendral Urip no 73, Pontianak</p>
-      <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=G+Hotel+Pontianak">View map</a></div>
-  </div>
-  <div class="cd rv" id="cd" aria-live="off"></div>
-</section>
+  <!-- EVENTS -->
+  <section class="center">
+    <h2 class="title rv">Acara Pernikahan</h2>
+    <div class="card rv"><h3>Pemberkatan Pernikahan</h3>
+      <p class="when">Sabtu, 26 Desember 2026<br>11.00 WIB s/d selesai</p>
+      <p>Gereja Katolik Santo Hieronimus<br>Tanjung Hulu, Pontianak</p>
+      <a class="pill dark" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Gereja+Katolik+Santo+Hironimus+Paroki+Pontianak">Lihat Peta</a></div>
+    <div class="card rv"><h3>Resepsi</h3>
+      <p class="when">Sabtu, 26 Desember 2026<br>18.00 WIB s/d selesai</p>
+      <p>G-HOTEL<br>Jendral Urip no 73, Pontianak</p>
+      <a class="pill dark" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=G+Hotel+Pontianak">Lihat Peta</a></div>
+  </section>
 
-<section>
-  <h2 class="rv">Gallery</h2>
-  <p class="sub rv">Moments we love.</p>
-  <div class="gal" id="gal"><!-- filled by js/main.js from the PHOTOS list --></div>
-</section>
+  <!-- GALLERY -->
+  <section class="center tint">
+    <h2 class="title rv">Galeri</h2>
+    <div class="gal" id="gal"></div>
+  </section>
 
-<footer><p class="serif">Vincensius &amp; Devi</p><p>With love and gratitude, see you on the day.</p></footer>
+  <!-- WISHES -->
+  <section class="center">
+    <h2 class="title rv">Ucapan &amp; Doa</h2>
+    <p class="rv">Kirimkan ucapan dan doa restu untuk kami.</p>
+    <form id="wishForm" class="wish rv">
+      <input id="wName" maxlength="60" placeholder="Nama" aria-label="Nama" required>
+      <textarea id="wMsg" maxlength="500" rows="4" placeholder="Tulis ucapan dan doa..." aria-label="Ucapan" required></textarea>
+      <input id="wHp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="pill dark" type="submit" id="wBtn">Kirim Ucapan</button>
+      <p class="small" id="wStatus" role="status"></p>
+    </form>
+    <div class="wishes" id="wishList"></div>
+  </section>
 
+  <footer class="center wine">
+    <p class="rv">Terima kasih atas doa dan kehadiran Bapak/Ibu/Saudara/i.</p>
+    <h2 class="names rv">Vincensius &amp; Devi</h2>
+  </footer>
+</main>
+
+<!-- floating buttons -->
+<div class="float" id="float" hidden>
+  <button id="scrollBtn" aria-label="Auto scroll" title="Auto scroll">&#8595;</button>
+  <button id="musicBtn" aria-label="Musik" title="Musik">&#9835;</button>
+</div>
+<audio id="bgm" loop preload="auto" src="audio/music.mp3"></audio>
 <script src="js/main.js"></script>
 </body>
 </html>
