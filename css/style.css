@@ -46,7 +46,7 @@ blockquote{font-style:italic;font-size:1.25rem;margin-bottom:28px}
 cite{display:block;font:400 .85rem Poppins,sans-serif;font-style:normal;margin-top:10px;color:var(--wine)}
 .arch{width:min(260px,70vw);aspect-ratio:3/4;margin:0 auto 20px;border-radius:999px 999px 14px 14px;border:3px solid #fff;box-shadow:0 0 0 1px var(--wine)}
 .person h3{font-size:1.6rem;color:var(--wine)}
-.amp{font:400 3rem Italiana,serif;color:var(--wine);margin:0px 0}
+.amp{font:400 3rem Italiana,serif;color:var(--wine);}
 .title{font-size:2rem;color:var(--wine);margin-bottom:34px}
 .card{border:1px solid var(--wine);border-radius:14px;padding:34px 22px;margin-bottom:22px}
 .card h3{font-size:1.5rem;color:var(--wine);margin-bottom:10px}
