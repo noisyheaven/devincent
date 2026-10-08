@@ -1,10 +1,11 @@
-// Paste this whole file into Google Apps Script (see README -> WISHES).
+// Paste this whole file into Google Apps Script (replace the old code), then Save and redeploy (see README).
 var SHEET_NAME = "Ucapan";
 
 function sheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getSheetByName(SHEET_NAME);
-  if (!sh) { sh = ss.insertSheet(SHEET_NAME); sh.appendRow(["Waktu", "Nama", "Ucapan"]); }
+  if (!sh) { sh = ss.insertSheet(SHEET_NAME); sh.appendRow(["Waktu", "Nama", "Ucapan", "Kehadiran"]); }
+  else if (!sh.getRange("D1").getValue()) { sh.getRange("D1").setValue("Kehadiran"); }   // adds the new column header
   return sh;
 }
 function json_(o) {
@@ -12,16 +13,18 @@ function json_(o) {
 }
 function safe_(s) { return /^[=+\-@]/.test(s) ? "'" + s : s; }   // stops spreadsheet formulas
 
-// Returns the latest 100 wishes, newest first.
+// Latest 100 wishes, newest first.
 function doGet() {
   var sh = sheet_(), n = sh.getLastRow();
   if (n < 2) return json_([]);
   var start = Math.max(2, n - 99);
-  var rows = sh.getRange(start, 1, n - start + 1, 3).getValues().reverse();
-  return json_(rows.map(function (r) { return { t: new Date(r[0]).getTime(), n: String(r[1]), m: String(r[2]) }; }));
+  var rows = sh.getRange(start, 1, n - start + 1, 4).getValues().reverse();
+  return json_(rows.map(function (r) {
+    return { t: new Date(r[0]).getTime(), n: String(r[1]), m: String(r[2]), a: String(r[3] || "") };
+  }));
 }
 
-// Saves a new wish.
+// Saves a new wish. Attendance must be "Hadir" or "Tidak hadir".
 function doPost(e) {
   var lock = LockService.getScriptLock();
   lock.waitLock(10000);
@@ -29,8 +32,9 @@ function doPost(e) {
     var d = JSON.parse(e.postData.contents);
     var n = String(d.n || "").trim().slice(0, 60);
     var m = String(d.m || "").trim().slice(0, 500);
-    if (!n || !m || d.h) return json_({ ok: false });
-    sheet_().appendRow([new Date(), safe_(n), safe_(m)]);
+    var a = String(d.a || "");
+    if (!n || !m || d.h || (a !== "Hadir" && a !== "Tidak hadir")) return json_({ ok: false });
+    sheet_().appendRow([new Date(), safe_(n), safe_(m), a]);
     return json_({ ok: true });
   } finally { lock.releaseLock(); }
 }
