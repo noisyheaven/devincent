@@ -1,11 +1,11 @@
-// GALLERY VIEWER: tap a gallery photo to open it full screen.
+// PHOTO VIEWER: tap a gallery photo, or the bride / groom photo, to open it full screen.
 // Swipe or use the arrows to move between photos. Close with X, Esc, or by tapping the dark area.
 (function () {
-  var gal = document.getElementById("gal"); if (!gal) return;
+  var gal = document.getElementById("gal");
 
   var st = document.createElement("style");
   st.textContent =
-    '#gal .bg{cursor:zoom-in}' +
+    '#gal .bg,.arch[role=button]{cursor:zoom-in}' +
     '#lb{position:fixed;inset:0;z-index:100;background:rgba(24,0,9,.97);display:flex;align-items:center;justify-content:center;touch-action:pan-y}' +
     '#lb[hidden]{display:none}' +
     '#lb img{max-width:94vw;max-height:80vh;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,.5);opacity:0;transform:scale(.97);transition:opacity .3s,transform .3s;user-select:none;-webkit-user-drag:none}' +
@@ -34,7 +34,11 @@
       list = [], cur = 0, lastFocus = null;
 
   function url(el) { var m = /url\(["']?(.*?)["']?\)/.exec(el.style.backgroundImage || ""); return m ? m[1] : ""; }
-  function build() { list = [].slice.call(gal.children).filter(function (t) { return url(t); }); }
+  var SEL = "#gal .bg, .arch";                                  // gallery tiles + bride/groom photos
+  function build(t) {                                             // photos in the same group as the tapped one
+    var inGal = gal && gal.contains(t);
+    list = [].slice.call(document.querySelectorAll(inGal ? "#gal .bg" : ".arch")).filter(function (x) { return url(x); });
+  }
 
   function show(i) {
     cur = (i + list.length) % list.length;
@@ -56,12 +60,14 @@
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
-  gal.addEventListener("click", function (e) {
-    var t = e.target.closest(".bg"); if (!t || !gal.contains(t)) return;
-    build(); var i = list.indexOf(t); if (i > -1) open(i);
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest(SEL) : null; if (!t) return;
+    build(t); var i = list.indexOf(t); if (i > -1) open(i);
   });
-  gal.addEventListener("keydown", function (e) {
-    if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("bg")) { e.preventDefault(); e.target.click(); }
+  document.addEventListener("keydown", function (e) {
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches(SEL) && e.target.getAttribute("role") === "button") {
+      e.preventDefault(); e.target.click();
+    }
   });
   bx.addEventListener("click", close);
   bp.addEventListener("click", function () { show(cur - 1); });
@@ -89,12 +95,15 @@
     if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
   }, { passive: true });
 
-  // keyboard access for tiles that have a photo
+  // keyboard access for photos that have loaded
   function mark() {
-    [].slice.call(gal.children).forEach(function (t) {
+    [].slice.call(document.querySelectorAll(SEL)).forEach(function (t) {
       if (url(t) && !t.hasAttribute("role")) { t.setAttribute("role", "button"); t.setAttribute("tabindex", "0"); t.setAttribute("aria-label", "Perbesar foto"); }
     });
   }
-  new MutationObserver(mark).observe(gal, { subtree: true, attributes: true, attributeFilter: ["style"], childList: true });
+  var obs = new MutationObserver(mark);
+  [].slice.call(document.querySelectorAll("#gal, .arch")).forEach(function (n) {
+    obs.observe(n, { subtree: true, attributes: true, attributeFilter: ["style"], childList: true });
+  });
   mark();
 })();
